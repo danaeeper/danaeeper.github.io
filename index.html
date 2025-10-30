@@ -40,12 +40,12 @@
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;color:var(--text);background:var(--bg-grad);
-      font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+      font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif; scroll-behavior: smooth;}
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:28px 20px}
 
-    /* HEADER */
-    header{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.3) blur(10px);
+    /* HEADER AJUSTADO */
+    header{position:sticky;top:0;z-index:60;backdrop-filter:saturate(1.3) blur(12px); /* Blur aumentado */
       background:var(--glass);border-bottom:1px solid var(--stroke)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--coffee)}
@@ -60,8 +60,12 @@
 
     /* NAV DESKTOP */
     .navlinks{display:flex;gap:18px;align-items:center}
-    .navlinks a{padding:10px;border-radius:10px;opacity:.95}
+    .navlinks a{padding:10px;border-radius:10px;opacity:.95; transition: background .15s, opacity .15s;}
     .navlinks a:hover{background:#0000000a}
+    /* Indicador Activo */
+    .navlinks a.active{background:#0000000a; opacity:1; font-weight: 500;}
+    body.dark .navlinks a.active{background:#ffffff10;}
+
     .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--stroke);background:transparent; cursor: pointer;}
     .toggle svg{width:18px;height:18px}
 
@@ -189,8 +193,7 @@
     body.dark .pill{background:#ffffff14;border-color:#4a3c32;}
     body.dark .ribbon{background:linear-gradient(135deg,#c4d58b,#cfa486);color:#1a1614;}
 
-    /* ——— NUEVOS ESTILOS ——— */
-    /* Estilo para Iconos en Servicios */
+    /* ——— ESTILOS DE ICONOS Y REFERENCIAS ——— */
     .service-icon{
       width:22px; height:22px; stroke-width:2.5; margin-right:8px;
       vertical-align:-4px; color:var(--olive);
@@ -198,7 +201,6 @@
     body.dark .service-icon{
       color:var(--sage);
     }
-    /* Estilo para la Tarjeta de Referencia */
     .reference-card{
       grid-column:span 12;
       text-align:center;
@@ -218,7 +220,16 @@
       font-size:15px;
       margin:0;
     }
-
+    .saving-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--olive);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
@@ -227,10 +238,10 @@
     <button class="closebtn" id="closeDrawer" aria-label="Cerrar menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6l12 12M18 6L6 18" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <a href="#nosotros" onclick="closeMenu()">Sobre nosotros</a>
-    <a href="#precios" onclick="closeMenu()">Precios</a>
-    <a href="#servicios" onclick="closeMenu()">Servicios</a>
-    <a href="#contacto" onclick="closeMenu()">Contacto</a>
+    <a href="#nosotros" onclick="closeMenu()" class="nav-link">Sobre nosotros</a>
+    <a href="#precios" onclick="closeMenu()" class="nav-link">Precios</a>
+    <a href="#servicios" onclick="closeMenu()" class="nav-link">Servicios</a>
+    <a href="#contacto" onclick="closeMenu()" class="nav-link">Contacto</a>
     <a class="btn cta buy" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener" onclick="closeMenu()">Comprar</a>
   </nav>
 
@@ -241,10 +252,10 @@
       </div>
 
       <div class="navlinks" aria-label="Navegación principal">
-        <a href="#nosotros">Sobre nosotros</a>
-        <a href="#precios">Precios</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#nosotros" class="nav-link">Sobre nosotros</a>
+        <a href="#precios" class="nav-link">Precios</a>
+        <a href="#servicios" class="nav-link">Servicios</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Comprar</a>
         <button class="toggle" id="themeToggle" aria-pressed="false" title="Cambiar tema">🌓</button>
       </div>
@@ -256,10 +267,10 @@
   </header>
 
   <main class="container">
-    <section class="hero">
+    <section class="hero" id="hero">
       <span class="tag">Actualizamos a diario</span>
       <h1>Priv de confianza, <br>precios accesibles.</h1>
-      <p>En <strong>Dollies Priv</strong> ofrecemos <strong>bins frescos a diario</strong> y beneficios como
+      <p>En <strong>Dollies Priv</strong> ofrecemos <strong>bins frescos y verificados a diario</strong> para asegurar la máxima tasa de éxito en todos tus métodos, además de beneficios como
         métodos, mini cursos, cuentas premium públicas.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Iniciar compra en Telegram</a>
@@ -282,7 +293,7 @@
 
     <section id="precios" class="pricing">
       <h2>Planes de precios</h2>
-      <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a ti</p>
+      <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a ti. **Todos los planes incluyen acceso completo a todos los servicios.**</p>
 
       <div style="text-align:center; margin: 22px 0;">
         <img src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
@@ -297,8 +308,9 @@
           <h3>7 días</h3>
           <div class="price">18 Robux</div>
           <ul class="list">
-            <li>Plan Basico</li>
-            <li>Acceso a Scam, Extras, Scrapper</li>
+            <li>Duración: 7 días</li>
+            <li>Acceso completo a todos los Droppers (Scam, Extras, Scrapper).</li>
+            <li>Ideal para probar el servicio.</li>
           </ul>
         </div>
 
@@ -307,8 +319,9 @@
           <h3>18 días</h3>
           <div class="price">22 Robux</div>
           <ul class="list">
-            <li>Plan Standar</li>
-            <li>Acceso a Scam, Extras, Scrapper</li>
+            <li>Duración: 18 días</li>
+            <li>Acceso completo a todos los Droppers.</li>
+            <li>Mayor duración a mejor costo/día.</li>
           </ul>
         </div>
 
@@ -317,19 +330,21 @@
           <h3>30 días</h3>
           <div class="price">40 Robux</div>
           <ul class="list">
-            <li>Plan Pro</li>
-            <li>Acceso a Scam, Extras, Scrapper</li>
+            <li>Duración: 30 días (1 mes)</li>
+            <li>Acceso completo a todos los Droppers.</li>
+            <li>Conveniente para uso mensual constante.</li>
           </ul>
         </div>
 
         <div class="card plan plan--best featured">
-          <span class="ribbon">★ Recomendado</span>
+          <span class="ribbon">★ Mejor Valor</span>
           <span class="pill">Max-plan</span>
-          <h3>45 días</h3>
+          <h3>45 días <span class="saving-tag">¡Máximo ahorro!</span></h3>
           <div class="price">50 Robux</div>
           <ul class="list">
-            <li>Plan Max</li>
-            <li>Acceso a Scam, Extras, Scrapper</li>
+            <li>Duración: 45 días</li>
+            <li>Acceso completo a todos los Droppers.</li>
+            <li>La mejor opción a largo plazo y la más económica por día.</li>
           </ul>
         </div>
       </div>
@@ -435,6 +450,40 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       toggle?.setAttribute('aria-pressed', isDark ? 'true' : 'false');
     });
+
+    // ====== Indicador de Sección Activa (Nuevo Script) ======
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Función para determinar qué sección está visible
+    function activateLink() {
+        let current = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120; // Ajuste para el header sticky
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', activateLink);
+    // Ejecutar una vez al cargar para activar el link correcto si no está al inicio
+    document.addEventListener('DOMContentLoaded', activateLink);
+    // Como el hero no tiene enlace, podemos inicializar 'nosotros' si la página está en la parte superior
+    if (window.location.hash) {
+        // Si hay hash, el script lo manejará.
+    } else {
+        document.querySelector('.nav-link[href="#nosotros"]').classList.add('active');
+    }
+
   </script>
 </body>
 </html>
