@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,93 +8,117 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Paleta café + oliva + crema (combinando con tu imagen) */
-      --cream: #f6f2e9;
-      --paper: #fffdf7;
-      --coffee: #5b3a29;
-      --coffee-2:#7a4e36;
-      --olive:  #7d8f3a;
-      --sage:   #b8c2a2;
-      --text:   #2a1a12;
-      --muted:  #6b5a4b;
-      --stroke: #e8e0d3;
-      --card:   #ffffffcc;
-      --shadow: 0 14px 30px #00000018;
-      --radius: 18px;
+      --cream:#f6f2e9;--paper:#fffdf7;--coffee:#5b3a29;--coffee-2:#7a4e36;
+      --olive:#7d8f3a;--sage:#b8c2a2;--text:#2a1a12;--muted:#6b5a4b;
+      --stroke:#e8e0d3;--card:#ffffffcc;--shadow:0 14px 30px #00000018;--radius:18px
     }
     *{box-sizing:border-box}
-    html,body{
-      margin:0; padding:0; color:var(--text);
+    html,body{margin:0;padding:0;color:var(--text);
       background:
-        radial-gradient(900px 700px at 90% -10%, #b8c2a230 0%, transparent 60%),
-        radial-gradient(700px 600px at -10% 20%, #c7b29a30 0%, transparent 60%),
-        linear-gradient(180deg,#faf6ee 0%, #f3eee4 100%);
-      font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    }
+      radial-gradient(900px 700px at 90% -10%, #b8c2a230 0%, transparent 60%),
+      radial-gradient(700px 600px at -10% 20%, #c7b29a30 0%, transparent 60%),
+      linear-gradient(180deg,#faf6ee 0%, #f3eee4 100%);
+      font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif}
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:28px 20px}
 
-    /* Header */
-    header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:saturate(1.3) blur(10px);
-      background-color:#fff8efc7; border-bottom:1px solid var(--stroke);
-    }
+    /* HEADER */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.3) blur(10px);
+      background:#fff8efc7;border-bottom:1px solid var(--stroke)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--coffee)}
-    .logo{width:28px;height:28px;border-radius:8px;
-      background:linear-gradient(135deg,var(--olive),var(--coffee-2)); box-shadow:var(--shadow)}
-    .navlinks a{padding:10px;border-radius:10px;opacity:.95}
-    .navlinks a:hover{background:#00000008}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;
-      border:1px solid var(--stroke);background:linear-gradient(135deg,#ffffffc8,#fff7e8b0);box-shadow:var(--shadow)}
+    .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--olive),var(--coffee-2));box-shadow:var(--shadow)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;border:1px solid var(--stroke);
+      background:linear-gradient(135deg,#ffffffc8,#fff7e8b0);box-shadow:var(--shadow)}
     .btn:hover{transform:translateY(-1px)}
     .cta{border:none;background:linear-gradient(135deg,var(--olive),var(--coffee-2));color:#fff}
 
-    /* Hero */
+    /* DESKTOP NAV */
+    .navlinks{display:flex;gap:18px;align-items:center}
+    .navlinks a{padding:10px;border-radius:10px;opacity:.95}
+    .navlinks a:hover{background:#00000008}
+
+    /* HAMBURGER */
+    .hamburger{display:none;position:relative;width:42px;height:42px;border:1px solid var(--stroke);
+      border-radius:12px;background:#ffffff80}
+    .hamburger span{position:absolute;left:9px;right:9px;height:2px;background:var(--coffee);transition:.25s}
+    .hamburger span:nth-child(1){top:12px}
+    .hamburger span:nth-child(2){top:20px}
+    .hamburger span:nth-child(3){top:28px}
+    .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+    /* MOBILE PANEL */
+    .overlay{position:fixed;inset:0;background:#00000040;opacity:0;pointer-events:none;transition:.25s}
+    .drawer{position:fixed;top:0;right:-80%;width:78%;max-width:360px;height:100%;
+      background:var(--paper);border-left:1px solid var(--stroke);box-shadow:var(--shadow);
+      padding:22px;display:flex;flex-direction:column;gap:12px;transition:.25s}
+    .drawer a{padding:14px 10px;border-radius:12px}
+    .drawer a:hover{background:#00000006}
+    .drawer .buy{margin-top:auto}
+
+    .menu-open .overlay{opacity:1;pointer-events:auto}
+    .menu-open .drawer{right:0}
+
+    /* HERO & SECTIONS */
     .hero{padding:72px 0}
     .hero h1{font-family:"Playfair Display",serif;font-size:56px;line-height:1.05;margin:0 0 12px;color:var(--coffee)}
     .hero p{max-width:760px;color:var(--muted);margin:0 0 22px;font-size:18px}
-    .tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--stroke);
-      background:#fff6e7;color:var(--coffee);font-size:12px;letter-spacing:.2px}
-
-    /* Sections / Cards */
+    .tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--stroke);background:#fff6e7;color:var(--coffee);font-size:12px;letter-spacing:.2px}
     section{padding:38px 0}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--stroke);
-      border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
     @media(min-width:720px){
+      .navlinks{display:flex}
+      .hamburger{display:none}
       .pricing .card{grid-column:span 3}
       .services .card{grid-column:span 4}
       .contacts .card{grid-column:span 4}
     }
-
+    @media(max-width:719px){
+      .navlinks{display:none}         /* oculta links en móvil */
+      .hamburger{display:inline-block}/* muestra botón */
+    }
     h2{font-family:"Playfair Display",serif;font-size:34px;margin:0 0 10px;color:var(--coffee)}
     .muted{color:var(--muted)}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);
-      color:var(--coffee); background:#fff4e1; font-size:12px}
-    .price{font-size:34px;font-weight:700;background:linear-gradient(135deg,var(--olive),var(--coffee));
-      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);color:var(--coffee);background:#fff4e1;font-size:12px}
+    .price{font-size:34px;font-weight:700;background:linear-gradient(135deg,var(--olive),var(--coffee));-webkit-background-clip:text;background-clip:text;color:transparent}
     .list{margin:12px 0 0;padding:0 0 0 16px;color:var(--muted)}
-
     footer{padding:36px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center}
     .tiny{font-size:12px;opacity:.85}
   </style>
 </head>
 <body>
+  <!-- Mobile overlay & drawer -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+  <nav class="drawer" id="drawer" aria-label="Menú">
+    <a href="#nosotros" onclick="closeMenu()">Sobre nosotros</a>
+    <a href="#precios" onclick="closeMenu()">Precios</a>
+    <a href="#servicios" onclick="closeMenu()">Servicios</a>
+    <a href="#contacto" onclick="closeMenu()">Contacto</a>
+    <a class="btn cta buy" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener" onclick="closeMenu()">Comprar</a>
+  </nav>
+
   <header>
     <div class="container nav">
       <div class="brand">
-        <div class="logo"></div>
-        <span>Dollies <span style="opacity:.75">Priv</span></span>
+        <div class="logo"></div><span>Dollies <span style="opacity:.75">Priv</span></span>
       </div>
-      <nav class="navlinks" aria-label="Secciones">
+
+      <!-- Desktop links -->
+      <div class="navlinks" aria-label="Navegación principal">
         <a href="#nosotros">Sobre nosotros</a>
         <a href="#precios">Precios</a>
         <a href="#servicios">Servicios</a>
         <a href="#contacto">Contacto</a>
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Comprar</a>
-      </nav>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="burger" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -105,10 +127,8 @@
     <section class="hero">
       <span class="tag">Actualizamos a diario</span>
       <h1>Priv de confianza, <br>precios accesibles.</h1>
-      <p>
-        En <strong>Dollies Priv</strong> ofrecemos <strong>dolls frescos a diario</strong> y beneficios como
-        métodos, mini cursos, cuentas premium públicas, dinámicas y más — con soporte directo por Telegram.
-      </p>
+      <p>En <strong>Dollies Priv</strong> ofrecemos <strong>dolls frescos a diario</strong> y beneficios como
+        métodos, mini cursos, cuentas premium públicas, dinámicas y más — con soporte directo por Telegram.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Iniciar compra en Telegram</a>
         <a class="btn" href="#precios">Ver planes</a>
@@ -120,11 +140,9 @@
       <div class="grid">
         <article class="card">
           <h2>¿Qué somos?</h2>
-          <p class="muted">
-            <strong>Dollies Priv</strong> ofrece contenido actualizado cada día y herramientas para tu experiencia:
-            métodos, mini cursos, beneficios en cuentas premium públicas y dinámicas de comunidad. Nuestro foco es
-            la <strong>accesibilidad</strong> y el <strong>buen soporte</strong>.
-          </p>
+          <p class="muted"><strong>Dollies Priv</strong> ofrece contenido actualizado cada día y herramientas para tu
+            experiencia: métodos, mini cursos, beneficios en cuentas premium públicas y dinámicas de comunidad. Nuestro
+            foco es la <strong>accesibilidad</strong> y el <strong>buen soporte</strong>.</p>
         </article>
       </div>
     </section>
@@ -134,12 +152,10 @@
       <h2>Planes de precios</h2>
       <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a vos.</p>
 
-      <!-- Imagen decorativa que marca la estética -->
       <div style="text-align:center; margin: 22px 0;">
-        <img
-          src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
-          alt="Dollies Priv — estética café/oliva"
-          style="max-width: 420px; width: 92%; border-radius: 18px; box-shadow: 0 14px 30px #00000025; border:1px solid var(--stroke);">
+        <img src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
+             alt="Dollies Priv — estética café/oliva"
+             style="max-width:420px;width:92%;border-radius:18px;box-shadow:0 14px 30px #00000025;border:1px solid var(--stroke);">
       </div>
 
       <div class="grid">
@@ -147,37 +163,25 @@
           <span class="pill">Básico</span>
           <h3>7 días</h3>
           <div class="price">18 Robux</div>
-          <ul class="list">
-            <li>Acceso a contenido diario</li>
-            <li>Soporte por Telegram</li>
-          </ul>
+          <ul class="list"><li>Acceso a contenido diario</li><li>Soporte por Telegram</li></ul>
         </div>
         <div class="card">
           <span class="pill">Intermedio</span>
           <h3>18 días</h3>
           <div class="price">22 Robux</div>
-          <ul class="list">
-            <li>Todo del plan Básico</li>
-            <li>Actualizaciones priorizadas</li>
-          </ul>
+          <ul class="list"><li>Todo del plan Básico</li><li>Actualizaciones priorizadas</li></ul>
         </div>
         <div class="card">
           <span class="pill">Popular</span>
           <h3>30 días</h3>
           <div class="price">40 Robux</div>
-          <ul class="list">
-            <li>Acceso completo</li>
-            <li>Soporte prioritario</li>
-          </ul>
+          <ul class="list"><li>Acceso completo</li><li>Soporte prioritario</li></ul>
         </div>
         <div class="card">
           <span class="pill">Best Value</span>
           <h3>45 días</h3>
           <div class="price">50 Robux</div>
-          <ul class="list">
-            <li>Todo lo anterior</li>
-            <li>Beneficios extra de comunidad</li>
-          </ul>
+          <ul class="list"><li>Todo lo anterior</li><li>Beneficios extra de comunidad</li></ul>
         </div>
       </div>
 
@@ -227,11 +231,36 @@
   </main>
 
   <footer>
-    <div class="container">
-      © <span id="y"></span> Dollies Priv · Todos los derechos reservados
-    </div>
+    <div class="container">© <span id="y"></span> Dollies Priv · Todos los derechos reservados</div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    // Año en footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Lógica de menú
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('overlay');
+    const root = document.documentElement;
+
+    function openMenu(){
+      document.body.classList.add('menu-open');
+      burger.setAttribute('aria-expanded','true');
+      overlay.removeAttribute('aria-hidden');
+    }
+    function closeMenu(){
+      document.body.classList.remove('menu-open');
+      burger.setAttribute('aria-expanded','false');
+      overlay.setAttribute('aria-hidden','true');
+    }
+
+    burger?.addEventListener('click', ()=>{
+      if (document.body.classList.contains('menu-open')) closeMenu(); else openMenu();
+    });
+    overlay?.addEventListener('click', closeMenu);
+    // Cerrar con ESC
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+  </script>
 </body>
 </html>
