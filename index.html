@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dollies Priv — Subscripciones</title>
-  <meta name="description" content="Dollies Priv — bins frescos a diario, planes accesibles.">
+  <meta name="description" content="Dollies Priv — dolls frescos a diario, planes accesibles y soporte por Telegram.">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* —— PALETA (LIGHT) —— */
@@ -83,21 +83,20 @@
 
     /* MOBILE PANEL */
     .overlay{position:fixed;inset:0;background:#00000040;opacity:0;pointer-events:none;transition:.25s;z-index:55}
-    .drawer{position:fixed;top:0;right:-80%;width:78%;max-width:360px;height:100%;
+    .drawer{
+      position:fixed;top:0;right:-80%;width:78%;max-width:360px;height:100%;
       background:var(--panel);backdrop-filter:blur(12px) saturate(1.4);
       border-left:1px solid var(--stroke);box-shadow:var(--shadow);
       padding:22px 24px 28px;display:flex;flex-direction:column;gap:16px;
-      overflow-y:auto;scroll-behavior:smooth;transition:transform .3s ease, right .3s ease;z-index:56}
+      overflow-y:auto;scroll-behavior:smooth;transition:transform .3s ease, right .3s ease;z-index:56
+    }
     .drawer a{padding:14px 10px;border-radius:12px;font-size:17px;color:var(--coffee);font-weight:500}
     body.dark .drawer a{color:#efe9e4}
     .drawer a:hover{background:#00000008}
     .drawer .buy{margin-top:auto;background:var(--btn-grad);color:#fff;justify-content:center}
-
-    /* Close button in drawer */
     .closebtn{position:sticky;top:6px;align-self:flex-end;border:1px solid var(--stroke);
       background:transparent;width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
     .closebtn svg{width:20px;height:20px}
-
     .menu-open .overlay{opacity:1;pointer-events:auto;backdrop-filter:blur(4px)}
     .menu-open .drawer{right:0;animation:slideIn .3s ease forwards}
     @keyframes slideIn{from{transform:translateX(30px);opacity:0}to{transform:translateX(0);opacity:1}}
@@ -132,6 +131,39 @@
     .list{margin:12px 0 0;padding:0 0 0 16px;color:var(--muted)}
     footer{padding:36px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center}
     .tiny{font-size:12px;opacity:.85}
+
+    /* —— Colores por plan + destacado —— */
+    .pricing .card.plan{position:relative;transition:.2s;border-radius:20px}
+    .pricing .plan:hover{transform:translateY(-2px)}
+    .pricing .plan .pill{background:#ffffff20}
+    .plan--basico{
+      background:linear-gradient(180deg,#ffffffcc,#ffffffb3);
+      border:1px solid var(--stroke);
+    }
+    .plan--inter{
+      background:linear-gradient(180deg,#fffbeccc,#fff7d9bb);
+      border:1px solid #eadfbd;
+    }
+    .plan--popular{
+      background:linear-gradient(180deg,#f2ffeacc,#e8f6d7bb);
+      border:1px solid #d6e7c4;
+    }
+    .plan--best{
+      background:linear-gradient(135deg,#9db46a33,#caa48633),
+                 linear-gradient(180deg,#ffffffee,#fffaf2dd);
+      border:1px solid #c7ba9e;
+      box-shadow:0 18px 40px #0000001f;
+    }
+    .plan--best.featured{outline:2px solid #b8c27a;outline-offset:2px;transform:translateY(-2px)}
+    .ribbon{
+      position:absolute;top:14px;right:14px;padding:6px 10px;font-size:12px;font-weight:600;
+      background:linear-gradient(135deg,var(--olive),var(--coffee-2));color:#fff;border-radius:999px;box-shadow:0 8px 20px #00000022
+    }
+    .plan--best .price{font-size:38px}
+    @media(max-width:719px){
+      .pricing .grid{display:flex;flex-direction:column}
+      .pricing .plan.featured{order:-1}
+    }
   </style>
 </head>
 <body>
@@ -178,10 +210,10 @@
   <main class="container">
     <!-- HERO -->
     <section class="hero">
-      <span class="tag">Bins a diario</span>
+      <span class="tag">Actualizamos a diario</span>
       <h1>Priv de confianza, <br>precios accesibles.</h1>
-      <p>En <strong>Dollies Priv</strong> ofrecemos <strong> bins frescos a diario</strong> ademas de obtener beneficios como
-        métodos, mini cursos, cuentas premium públicas, dinámicas y más.</p>
+      <p>En <strong>Dollies Priv</strong> ofrecemos <strong>dolls frescos a diario</strong> y beneficios como
+        métodos, mini cursos, cuentas premium públicas, dinámicas y más — con soporte directo por Telegram.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Iniciar compra en Telegram</a>
         <a class="btn" href="#precios">Ver planes</a>
@@ -194,15 +226,16 @@
         <article class="card">
           <h2>¿Qué somos?</h2>
           <p class="muted"><strong>Dollies Priv</strong> ofrece contenido actualizado cada día y herramientas para tu
-            experiencia: métodos, mini cursos, beneficios en cuentas premium públicas y dinámicas.</p>
+            experiencia: métodos, mini cursos, beneficios en cuentas premium públicas y dinámicas de comunidad. Nuestro
+            foco es la <strong>accesibilidad</strong> y el <strong>buen soporte</strong>.</p>
         </article>
       </div>
     </section>
 
-    <!-- PRECIOS -->
+    <!-- PRECIOS (con destacado) -->
     <section id="precios" class="pricing">
       <h2>Planes de precios</h2>
-      <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a ti.</p>
+      <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a vos.</p>
 
       <div style="text-align:center; margin: 22px 0;">
         <img src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
@@ -211,29 +244,34 @@
       </div>
 
       <div class="grid">
-        <div class="card">
-          <span class="pill">Basic Plan</span>
+        <div class="card plan plan--basico">
+          <span class="pill">Básico</span>
           <h3>7 días</h3>
           <div class="price">18 Robux</div>
-          <ul class="list"><li>Plan basico</li><li>Acceso a Scam, Extras, Scrapper</li></ul>
+          <ul class="list"><li>Acceso a contenido diario</li><li>Soporte por Telegram</li></ul>
         </div>
-        <div class="card">
-          <span class="pill"> Standar Plan</span>
+
+        <div class="card plan plan--inter">
+          <span class="pill">Intermedio</span>
           <h3>18 días</h3>
           <div class="price">22 Robux</div>
-          <ul class="list"><li>Plan estandar</li><li>Acceso a Scam, Extras, Scrapper</li></ul>
+          <ul class="list"><li>Todo del plan Básico</li><li>Actualizaciones priorizadas</li></ul>
         </div>
-        <div class="card">
-          <span class="pill">Pro-Plan</span>
+
+        <div class="card plan plan--popular">
+          <span class="pill">Popular</span>
           <h3>30 días</h3>
           <div class="price">40 Robux</div>
-          <ul class="list"><li>Plan Pro</li><li>Acceso a Scam, Extras, Scrapper</li></ul>
+          <ul class="list"><li>Acceso completo</li><li>Soporte prioritario</li></ul>
         </div>
-        <div class="card">
-          <span class="pill">Max-Plan</span>
+
+        <!-- ★ DESTACADO 45 días -->
+        <div class="card plan plan--best featured">
+          <span class="ribbon">★ Recomendado</span>
+          <span class="pill">Best Value</span>
           <h3>45 días</h3>
           <div class="price">50 Robux</div>
-          <ul class="list"><li>Plan Max</li><li>Acceso a Scam, Extras, Scrapper</li></ul>
+          <ul class="list"><li>Todo lo anterior</li><li>Beneficios extra de comunidad</li></ul>
         </div>
       </div>
 
@@ -248,16 +286,16 @@
       <h2>Servicios incluidos</h2>
       <div class="grid">
         <div class="card">
-          <h3>Scraper</h3>
-          <p class="muted">Dropper de tarjetas con <strong>status</strong> sirve para sacar bins</p>
+          <h3>Scraper (datos públicos)</h3>
+          <p class="muted">Obtención automatizada de datos <strong>públicos</strong> y permitidos para análisis y organización.</p>
         </div>
         <div class="card">
-          <h3>Scam</h3>
-          <p class="muted">Dropper de tarjetas vivas, con status, gateway, y response para sacar suscripciones en apps, compras, etc.</p>
+          <h3>Automatizaciones & extras</h3>
+          <p class="muted">Flujos automáticos, alertas y utilidades adicionales para mejorar tu experiencia.</p>
         </div>
         <div class="card">
-          <h3>Extras</h3>
-          <p class="muted">Dropper de Extras de bins, sirve para obtener extras de un bin.</p>
+          <h3>Soporte & comunidad</h3>
+          <p class="muted">Acompañamiento por Telegram y dinámicas de comunidad. Nada de actividades ilegales o dañinas.</p>
         </div>
       </div>
     </section>
@@ -276,14 +314,14 @@
         </a>
         <a class="card" href="https://t.me/vipperina" target="_blank" rel="noopener">
           <h3>@vipperina</h3>
-          <p class="muted">Contacto directo</p>
+          <p class="muted">Soporte y consultas</p>
         </a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">© <span id="y"></span> Dollies Priv</div>
+    <div class="container">© <span id="y"></span> Dollies Priv · Todos los derechos reservados</div>
   </footer>
 
   <script>
@@ -318,7 +356,7 @@
     const iconSun = document.getElementById('iconSun');
     const iconMoon = document.getElementById('iconMoon');
 
-    // Cargar preferencia guardada
+    // Cargar preferencia guardada o preferencia del sistema
     const saved = localStorage.getItem('theme');
     if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.body.classList.add('dark');
