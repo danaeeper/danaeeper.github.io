@@ -10,60 +10,77 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg: #f9f7ff;
-      --grad1: #e8b8ff;
-      --grad2: #b9c7ff;
-      --text: #2d1f38;
-      --muted:#5e4a72;
-      --card:#ffffffcc;
-      --stroke:#e4daf4;
-      --accent:#caa8ff;
-      --accent-2:#a8b8ff;
-      --shadow: 0 10px 30px #c7b6ff80;
+      /* Paleta café + oliva + crema (combinando con tu imagen) */
+      --cream: #f6f2e9;
+      --paper: #fffdf7;
+      --coffee: #5b3a29;
+      --coffee-2:#7a4e36;
+      --olive:  #7d8f3a;
+      --sage:   #b8c2a2;
+      --text:   #2a1a12;
+      --muted:  #6b5a4b;
+      --stroke: #e8e0d3;
+      --card:   #ffffffcc;
+      --shadow: 0 14px 30px #00000018;
       --radius: 18px;
     }
-    *{box-sizing:border-box;}
+    *{box-sizing:border-box}
     html,body{
-      margin:0;padding:0;
+      margin:0; padding:0; color:var(--text);
       background:
-        radial-gradient(900px 700px at 85% -10%, #b9c7ff40 0%, transparent 60%),
-        radial-gradient(700px 600px at -10% 20%, #e8b8ff50 0%, transparent 60%),
-        linear-gradient(180deg,#fff6ff 0%, #f8f5ff 100%);
-      color:var(--text);
-      font-family:'Poppins',system-ui,Segoe UI,Roboto,Arial,sans-serif;
+        radial-gradient(900px 700px at 90% -10%, #b8c2a230 0%, transparent 60%),
+        radial-gradient(700px 600px at -10% 20%, #c7b29a30 0%, transparent 60%),
+        linear-gradient(180deg,#faf6ee 0%, #f3eee4 100%);
+      font-family:Poppins,system-ui,Segoe UI,Roboto,Arial,sans-serif;
     }
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:28px 20px}
-    header{position:sticky;top:0;backdrop-filter:saturate(1.5) blur(12px);background-color:#ffffffaa;border-bottom:1px solid var(--stroke);z-index:50}
-    .nav{display:flex;gap:18px;align-items:center;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#5c3b8b}
-    .brand .logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--grad1),var(--grad2));box-shadow:var(--shadow)}
-    .navlinks a{opacity:.9;padding:10px;border-radius:12px}
-    .navlinks a:hover{background:#e8dbff40}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;border:1px solid var(--stroke);background:linear-gradient(135deg,#ffffffb8,#ffffff80);box-shadow:var(--shadow)}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(1.3) blur(10px);
+      background-color:#fff8efc7; border-bottom:1px solid var(--stroke);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--coffee)}
+    .logo{width:28px;height:28px;border-radius:8px;
+      background:linear-gradient(135deg,var(--olive),var(--coffee-2)); box-shadow:var(--shadow)}
+    .navlinks a{padding:10px;border-radius:10px;opacity:.95}
+    .navlinks a:hover{background:#00000008}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;
+      border:1px solid var(--stroke);background:linear-gradient(135deg,#ffffffc8,#fff7e8b0);box-shadow:var(--shadow)}
     .btn:hover{transform:translateY(-1px)}
-    .cta{background:linear-gradient(135deg,var(--grad1),var(--grad2));color:#fff;border:none}
-    /* hero */
-    .hero{padding:72px 0;text-align:left;}
-    .hero h1{font-family:"Playfair Display",serif;font-size:52px;line-height:1.08;margin:0 0 14px;color:#4b2b79}
-    .hero p{color:var(--muted);max-width:720px;margin:0 0 26px;font-size:18px}
-    .tag{display:inline-block;margin-bottom:16px;padding:6px 12px;border-radius:999px;border:1px solid var(--stroke);background:#e9ddff;font-size:12px;letter-spacing:.2px;color:#5c3b8b}
-    section{padding:36px 0}
+    .cta{border:none;background:linear-gradient(135deg,var(--olive),var(--coffee-2));color:#fff}
+
+    /* Hero */
+    .hero{padding:72px 0}
+    .hero h1{font-family:"Playfair Display",serif;font-size:56px;line-height:1.05;margin:0 0 12px;color:var(--coffee)}
+    .hero p{max-width:760px;color:var(--muted);margin:0 0 22px;font-size:18px}
+    .tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--stroke);
+      background:#fff6e7;color:var(--coffee);font-size:12px;letter-spacing:.2px}
+
+    /* Sections / Cards */
+    section{padding:38px 0}
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-    .card{grid-column:span 12;background:var(--card);border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card{grid-column:span 12;background:var(--card);border:1px solid var(--stroke);
+      border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
     @media(min-width:720px){
-      .hero h1{font-size:64px}
       .pricing .card{grid-column:span 3}
       .services .card{grid-column:span 4}
       .contacts .card{grid-column:span 4}
     }
-    h2{font-family:"Playfair Display",serif;font-size:34px;margin:0 0 12px;color:#4b2b79}
+
+    h2{font-family:"Playfair Display",serif;font-size:34px;margin:0 0 10px;color:var(--coffee)}
     .muted{color:var(--muted)}
-    .price{font-size:36px;font-weight:700;background:linear-gradient(135deg,var(--grad1),var(--grad2));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);font-size:12px;color:#7a5c9d;background:#f2eaff}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);
+      color:var(--coffee); background:#fff4e1; font-size:12px}
+    .price{font-size:34px;font-weight:700;background:linear-gradient(135deg,var(--olive),var(--coffee));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
     .list{margin:12px 0 0;padding:0 0 0 16px;color:var(--muted)}
+
     footer{padding:36px 0;border-top:1px solid var(--stroke);color:var(--muted);text-align:center}
-    .tiny{font-size:12px;opacity:.8}
+    .tiny{font-size:12px;opacity:.85}
   </style>
 </head>
 <body>
@@ -71,7 +88,7 @@
     <div class="container nav">
       <div class="brand">
         <div class="logo"></div>
-        <span>Dollies <span style="opacity:.7">Priv</span></span>
+        <span>Dollies <span style="opacity:.75">Priv</span></span>
       </div>
       <nav class="navlinks" aria-label="Secciones">
         <a href="#nosotros">Sobre nosotros</a>
@@ -84,15 +101,13 @@
   </header>
 
   <main class="container">
-
     <!-- HERO -->
     <section class="hero">
       <span class="tag">Actualizamos a diario</span>
-      <h1>Subscripciones <br><em>aesthetic</em> y accesibles</h1>
+      <h1>Priv de confianza, <br>precios accesibles.</h1>
       <p>
-        En <strong>Dollies Priv</strong> ofrecemos <strong>dolls frescos a diario</strong> a precios accesibles,
-        junto con <strong>métodos</strong>, <strong>mini cursos</strong>, <strong>cuentas premium públicas</strong>,
-        dinámicas y mucho más.
+        En <strong>Dollies Priv</strong> ofrecemos <strong>dolls frescos a diario</strong> y beneficios como
+        métodos, mini cursos, cuentas premium públicas, dinámicas y más — con soporte directo por Telegram.
       </p>
       <div style="display:flex;gap:12px;flex-wrap:wrap">
         <a class="btn cta" href="https://t.me/dollies_subsbot" target="_blank" rel="noopener">Iniciar compra en Telegram</a>
@@ -106,9 +121,9 @@
         <article class="card">
           <h2>¿Qué somos?</h2>
           <p class="muted">
-            <strong>Dollies Priv</strong> ofrece contenido actualizado todos los días y
-            herramientas para tu experiencia: métodos, mini cursos, beneficios en cuentas
-            premium públicas y dinámicas de la comunidad. Nuestro foco es la **accesibilidad** y el **buen soporte**.
+            <strong>Dollies Priv</strong> ofrece contenido actualizado cada día y herramientas para tu experiencia:
+            métodos, mini cursos, beneficios en cuentas premium públicas y dinámicas de comunidad. Nuestro foco es
+            la <strong>accesibilidad</strong> y el <strong>buen soporte</strong>.
           </p>
         </article>
       </div>
@@ -119,11 +134,12 @@
       <h2>Planes de precios</h2>
       <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a vos.</p>
 
-      <!-- Imagen decorativa -->
-      <div style="text-align:center; margin: 25px 0;">
-        <img src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
-             alt="Ilustración Dollies Priv aesthetic"
-             style="max-width: 380px; width: 90%; border-radius: 18px; box-shadow: 0 15px 30px #00000025;">
+      <!-- Imagen decorativa que marca la estética -->
+      <div style="text-align:center; margin: 22px 0;">
+        <img
+          src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
+          alt="Dollies Priv — estética café/oliva"
+          style="max-width: 420px; width: 92%; border-radius: 18px; box-shadow: 0 14px 30px #00000025; border:1px solid var(--stroke);">
       </div>
 
       <div class="grid">
@@ -137,7 +153,7 @@
           </ul>
         </div>
         <div class="card">
-          <span class="pill">Starter</span>
+          <span class="pill">Intermedio</span>
           <h3>18 días</h3>
           <div class="price">22 Robux</div>
           <ul class="list">
@@ -177,7 +193,7 @@
       <div class="grid">
         <div class="card">
           <h3>Scraper (datos públicos)</h3>
-          <p class="muted">Obtención automatizada de datos **públicos** y permitidos, para análisis y organización.</p>
+          <p class="muted">Obtención automatizada de datos <strong>públicos</strong> y permitidos para análisis y organización.</p>
         </div>
         <div class="card">
           <h3>Automatizaciones & extras</h3>
