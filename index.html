@@ -53,7 +53,7 @@
 
     /* BOTONES */
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;
-      border:1px solid var(--stroke);background:linear-gradient(135deg,#ffffffc8,#fff7e8b0);box-shadow:var(--shadow)}
+      border:1px solid var(--stroke);background:linear-gradient(135deg,#ffffffc8,#fff7e8b0);box-shadow:var(--shadow); cursor: pointer;}
     body.dark .btn{background:linear-gradient(135deg,#ffffff20,#ffffff10)}
     .btn:hover{transform:translateY(-1px)}
     .cta{border:none;background:var(--btn-grad);color:#fff}
@@ -62,12 +62,12 @@
     .navlinks{display:flex;gap:18px;align-items:center}
     .navlinks a{padding:10px;border-radius:10px;opacity:.95}
     .navlinks a:hover{background:#0000000a}
-    .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--stroke);background:transparent}
+    .toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--stroke);background:transparent; cursor: pointer;}
     .toggle svg{width:18px;height:18px}
 
     /* HAMBURGUESA */
     .hamburger{display:none;position:relative;width:42px;height:42px;border:1px solid var(--stroke);
-      border-radius:12px;background:#ffffff60}
+      border-radius:12px;background:#ffffff60; cursor: pointer;}
     body.dark .hamburger{background:#ffffff12}
     .hamburger span{position:absolute;left:9px;right:9px;height:2px;background:var(--coffee);transition:.25s}
     body.dark .hamburger span{background:#efe9e4}
@@ -90,7 +90,7 @@
     .drawer a:hover{background:#00000008}
     .drawer .buy{margin-top:auto;background:var(--btn-grad);color:#fff;justify-content:center}
     .closebtn{position:sticky;top:6px;align-self:flex-end;border:1px solid var(--stroke);
-      background:transparent;width:42px;height:42px;border-radius:12px;display:grid;place-items:center}
+      background:transparent;width:42px;height:42px;border-radius:12px;display:grid;place-items:center; cursor: pointer;}
     .closebtn svg{width:20px;height:20px}
     .menu-open .overlay{opacity:1;pointer-events:auto;backdrop-filter:blur(4px)}
     .menu-open .drawer{right:0;animation:slideIn .3s ease forwards}
@@ -146,7 +146,7 @@
     }
     .plan--best{
       background:linear-gradient(135deg,#9db46a33,#caa48633),
-                 linear-gradient(180deg,#ffffffee,#fffaf2dd);
+                  linear-gradient(180deg,#ffffffee,#fffaf2dd);
       border:1px solid #c7ba9e;
       box-shadow:0 18px 40px #0000001f;
     }
@@ -189,10 +189,39 @@
     body.dark .pill{background:#ffffff14;border-color:#4a3c32;}
     body.dark .ribbon{background:linear-gradient(135deg,#c4d58b,#cfa486);color:#1a1614;}
 
+    /* ——— NUEVOS ESTILOS ——— */
+    /* Estilo para Iconos en Servicios */
+    .service-icon{
+      width:22px; height:22px; stroke-width:2.5; margin-right:8px;
+      vertical-align:-4px; color:var(--olive);
+    }
+    body.dark .service-icon{
+      color:var(--sage);
+    }
+    /* Estilo para la Tarjeta de Referencia */
+    .reference-card{
+      grid-column:span 12;
+      text-align:center;
+      padding:28px;
+      background:var(--panel);
+      border:1px dashed var(--stroke);
+      border-radius:var(--radius);
+      box-shadow:none;
+      margin-top:20px;
+    }
+    .reference-card h3{
+      margin-bottom:6px;
+      color:var(--coffee);
+      font-size:20px;
+    }
+    .reference-card p{
+      font-size:15px;
+      margin:0;
+    }
+
   </style>
 </head>
 <body>
-  <!-- Overlay & Drawer (móvil) -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
   <nav class="drawer" id="drawer" aria-label="Menú">
     <button class="closebtn" id="closeDrawer" aria-label="Cerrar menú">
@@ -227,7 +256,6 @@
   </header>
 
   <main class="container">
-    <!-- HERO -->
     <section class="hero">
       <span class="tag">Actualizamos a diario</span>
       <h1>Priv de confianza, <br>precios accesibles.</h1>
@@ -239,7 +267,6 @@
       </div>
     </section>
 
-    <!-- NOSOTROS -->
     <section id="nosotros">
       <div class="grid">
         <article class="card">
@@ -253,16 +280,15 @@
       </div>
     </section>
 
-    <!-- PRECIOS -->
     <section id="precios" class="pricing">
       <h2>Planes de precios</h2>
       <p class="muted">Pagá en <strong>Robux</strong>. Elegí el que mejor se adapte a ti</p>
 
-      <!-- Imagen estética -->
       <div style="text-align:center; margin: 22px 0;">
         <img src="https://i.pinimg.com/736x/28/db/88/28db88ee57a62135f30b62b3e8d953f5.jpg"
-             alt="Dollies Priv — estética café/oliva"
-             style="max-width:420px;width:92%;border-radius:18px;box-shadow:0 14px 30px #00000025;border:1px solid var(--stroke);">
+              alt="Dollies Priv — estética café/oliva"
+              loading="lazy"
+              style="max-width:420px;width:92%;border-radius:18px;box-shadow:0 14px 30px #00000025;border:1px solid var(--stroke);">
       </div>
 
       <div class="grid">
@@ -296,7 +322,6 @@
           </ul>
         </div>
 
-        <!-- ★ DESTACADO -->
         <div class="card plan plan--best featured">
           <span class="ribbon">★ Recomendado</span>
           <span class="pill">Max-plan</span>
@@ -315,26 +340,39 @@
       </div>
     </section>
 
-    <!-- SERVICIOS -->
     <section id="servicios" class="services">
       <h2>Servicios incluidos</h2>
       <div class="grid">
         <div class="card">
-          <h3>Scrapper</h3>
+          <h3>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Scrapper
+          </h3>
           <p class="muted">Dropper de tarjetas con<strong>status</strong>sirve para sacar tus propios bins</p>
         </div>
         <div class="card">
-          <h3>Scam</h3>
+          <h3>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Scam
+          </h3>
           <p class="muted">Dropper de tarjetas con <strong>status, </strong><strong>gateway, </strong><strong>response </strong> sirve para compras streaming y reales. </p>
         </div>
         <div class="card">
-          <h3>Extras</h3>
+          <h3>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M18.83 14.83a4 4 0 000-5.66L14.83 5.17a4 4 0 00-5.66 0L5.17 9.17a4 4 0 000 5.66L9.17 18.83a4 4 0 005.66 0z"/><path d="M8 12h8"/></svg>
+            Extras
+          </h3>
           <p class="muted">Dropper de extras de bins.</p>
         </div>
+        
+        <a class="reference-card" href="https://t.me/wdolliespriv" target="_blank" rel="noopener">
+          <h3>¡Mira nuestras referencias!</h3>
+          <p class="muted">Ver cientos de comprobantes de pago y comentarios en nuestro canal oficial de Telegram: <strong>t.me/wdolliespriv</strong></p>
+        </a>
+        
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto" class="contacts">
       <h2>Contacto</h2>
       <div class="grid">
